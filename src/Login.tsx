@@ -14,6 +14,7 @@ const Login: React.FC = (props: any) => {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    //Firebase ver9 compliant (modular)
     const unSub = onAuthStateChanged(auth, (user) => {
       user && props.history.push("/");
     });
@@ -60,6 +61,7 @@ const Login: React.FC = (props: any) => {
           isLogin
             ? async () => {
                 try {
+                  //Firebase ver9 compliant (modular)
                   await signInWithEmailAndPassword(auth, email, password);
                   props.history.push("/");
                 } catch (error: any) {
@@ -68,6 +70,7 @@ const Login: React.FC = (props: any) => {
               }
             : async () => {
                 try {
+                  //Firebase ver9 compliant (modular)
                   await createUserWithEmailAndPassword(auth, email, password);
                   props.history.push("/");
                 } catch (error: any) {

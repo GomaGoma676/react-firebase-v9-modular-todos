@@ -5,6 +5,7 @@ import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import { makeStyles } from "@material-ui/styles";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { db, auth } from "./firebase";
+//Firebase ver9 compliant (modular)
 import { collection, query, onSnapshot, addDoc } from "firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import TaskItem from "./TaskItem";
@@ -25,6 +26,7 @@ const App: React.FC = (props: any) => {
   const classes = useStyles();
 
   useEffect(() => {
+    //Firebase ver9 compliant (modular)
     const unSub = onAuthStateChanged(auth, (user) => {
       !user && props.history.push("login");
     });
@@ -32,6 +34,7 @@ const App: React.FC = (props: any) => {
   });
 
   useEffect(() => {
+    //Firebase ver9 compliant (modular)
     const q = query(collection(db, "tasks"));
     const unsub = onSnapshot(q, (querySnapshot) => {
       setTasks(
@@ -45,6 +48,7 @@ const App: React.FC = (props: any) => {
   }, []);
 
   const newTask = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    //Firebase ver9 compliant (modular)
     await addDoc(collection(db, "tasks"), { title: input });
     setInput("");
   };
