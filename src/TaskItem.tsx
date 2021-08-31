@@ -15,9 +15,13 @@ const TaskItem: React.FC<PROPS> = (props) => {
   const [title, setTitle] = useState(props.title);
   const tasksRef = collection(db, "tasks");
   const editTask = async () => {
-    await setDoc(doc(tasksRef, props.id), {
-      title: title,
-    });
+    await setDoc(
+      doc(tasksRef, props.id),
+      {
+        title: title,
+      },
+      { merge: true }
+    );
   };
 
   const deleteTask = async () => {
